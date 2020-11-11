@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <h2><%= @restaurant.name %></h2>
+  <hr>
+  <p>🌍<strong> Category:</strong>
+    <% if @restaurant.category == 'chinese' %>
+    <%= '🇨🇳' %>
+    <% elsif @restaurant.category == 'italian' %>
+    <%= '🇮🇹' %>
+    <% elsif @restaurant.category == 'japanese' %>
+    <%= '🇯🇵' %>
+    <% elsif @restaurant.category == 'french' %>
+    <%= '🇫🇷' %>
+    <% elsif @restaurant.category == 'belgian' %>
+    <%= '🇧🇪' %>
+    <% end %>
+  </p>
+  <p>☎️<strong> Phone number:</strong> <%= @restaurant.phone_number %></p>
+  <p>📍<strong> Address: </strong><%= @restaurant.address %></p>
+  <hr>
+  <p>⭐️<strong> Reviews</strong></p>
+  <br>
+  <% @restaurant.reviews.each do |review| %>
+  <p><%= '⭐️' * review.rating.to_i %><br>"<%= review.content %>" - anonymous</p>
+  <% end %>
+  <br>
+  <%= link_to '➕ Add a review', new_restaurant_review_path(@restaurant) %>
+  <hr>
+   <%= link_to '↩️ Return to restaurants', restaurants_path %>
+</div>
