@@ -18,12 +18,16 @@
   <p>📍<strong> Address: </strong><%= @restaurant.address %></p>
   <hr>
   <p>⭐️<strong> Reviews</strong></p>
-  <br>
   <% @restaurant.reviews.each do |review| %>
   <p><%= '⭐️' * review.rating.to_i %><br>"<%= review.content %>" - anonymous</p>
   <% end %>
   <br>
-  <%= link_to '➕ Add a review', new_restaurant_review_path(@restaurant) %>
+  <p><strong>✏️ Write review</strong></p>
+  <%= simple_form_for [@restaurant, @review] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating %>
+  <%= f.submit %>
+  <% end %>
   <hr>
    <%= link_to '↩️ Return to restaurants', restaurants_path %>
 </div>
